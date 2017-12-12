@@ -123,5 +123,43 @@ rather than a rectangular table with a fixed number of columns.
 \vspace{7 cm}
 \end{frame}
 
+\begin{frame}{}
+\vspace{1.25 cm}
+\begin{columns}[t]
+\column{0.3\linewidth}
+\vspace{1 cm}
+\includegraphics[width=\linewidth]{history-cropped.png}
+
+\column{0.35\linewidth}
+\underline{\large The ZEBRA heritage}
+
+\vspace{0.25 cm}
+\begin{itemize}
+\item Arbitrary length, nested data was a requirement from the very beginning.
+\item ZEBRA allocated these structures in FORTRAN and saved them in files.
+\item High energy physics analyses are still batch processes on binary files.
+\end{itemize}
+
+\column{0.35\linewidth}
+\underline{\large The CWN heritage}
+
+\vspace{0.25 cm}
+\begin{itemize}
+\item Column-Wise Ntuples: tabular data with same-attribute values stored contiguously in memory/on disk.
+\item {\it Much} faster to read just a few attributes.
+\end{itemize}
+
+\end{columns}
+
+\begin{columns}
+\column{0.3\linewidth}
+
+\column{0.75\linewidth}
+\begin{center}
+Though complex, it's possible to represent arbitrary length, nested data in a columnar format: ROOT (1995), Google~Dremel (2010), Apache Parquet (2013), Apache Arrow (2016).
+\end{center}
+\end{columns}
+\end{frame}
+
 
 \end{document}
