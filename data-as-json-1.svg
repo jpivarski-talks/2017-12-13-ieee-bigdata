@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="817.04883"
+   height="218.19727"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="data-as-json-2.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="315.07868"
+     inkscape:cy="6.0619484"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="968"
+     inkscape:window-height="1027"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-74.285713,-320.22687)">
+    <text
+       sodipodi:linespacing="125%"
+       id="text3751"
+       y="333.07648"
+       x="74.285713"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Nimbus Sans L;-inkscape-font-specification:Nimbus Sans L"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Droid Sans Mono;-inkscape-font-specification:Droid Sans Mono"
+         y="333.07648"
+         x="74.285713"
+         id="tspan3753"
+         sodipodi:role="line">[{<tspan
+   id="tspan3755"
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#aa4400;font-family:Droid Sans Mono;-inkscape-font-specification:Droid Sans Mono">&quot;event&quot;</tspan>: {</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Droid Sans Mono;-inkscape-font-specification:Droid Sans Mono"
+         id="tspan3757"
+         y="355.57648"
+         x="74.285713"
+         sodipodi:role="line"><tspan
+   id="tspan3759"
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#aa4400;font-family:Droid Sans Mono;-inkscape-font-specification:Droid Sans Mono">    &quot;tracks&quot;</tspan>: [{<tspan
+   id="tspan3761"
+   style="fill:#aa4400">&quot;phi&quot;</tspan>: <tspan
+   id="tspan3763"
+   style="fill:#0000ff">3.14</tspan>, <tspan
+   id="tspan3765"
+   style="fill:#aa4400">&quot;theta&quot;</tspan>:  <tspan
+   id="tspan3767"
+   style="fill:#0000ff">0.2</tspan>, <tspan
+   id="tspan3769"
+   style="fill:#aa4400">&quot;dxy&quot;</tspan>: <tspan
+   id="tspan3771"
+   style="fill:#0000ff">0.0001</tspan>, <tspan
+   id="tspan3773"
+   style="fill:#aa4400">&quot;dz&quot;</tspan>: <tspan
+   id="tspan3775"
+   style="fill:#0000ff">‒0.03</tspan>},</tspan><tspan
+         id="tspan3795"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Droid Sans Mono;-inkscape-font-specification:Droid Sans Mono"
+         y="378.07648"
+         x="74.285713"
+         sodipodi:role="line">               {<tspan
+   id="tspan3779"
+   style="fill:#aa4400">&quot;phi&quot;</tspan>: <tspan
+   id="tspan3781"
+   style="fill:#0000ff">4.31</tspan>, <tspan
+   id="tspan3783"
+   style="fill:#aa4400">&quot;theta&quot;</tspan>: <tspan
+   id="tspan3785"
+   style="fill:#0000ff">‒0.1</tspan>, <tspan
+   id="tspan3787"
+   style="fill:#aa4400">&quot;dxy&quot;</tspan>: <tspan
+   id="tspan3789"
+   style="fill:#0000ff">0.0002</tspan>, <tspan
+   id="tspan3791"
+   style="fill:#aa4400">&quot;dz&quot;</tspan>:  <tspan
+   id="tspan3793"
+   style="fill:#0000ff">0.02</tspan>},</tspan><tspan
+         id="tspan3813"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Droid Sans Mono;-inkscape-font-specification:Droid Sans Mono"
+         y="400.57648"
+         x="74.285713"
+         sodipodi:role="line">               ...],</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Droid Sans Mono;-inkscape-font-specification:Droid Sans Mono"
+         id="tspan3815"
+         y="423.07648"
+         x="74.285713"
+         sodipodi:role="line"><tspan
+   id="tspan3817"
+   style="fill:#aa4400">    &quot;decays&quot;</tspan>: [{<tspan
+   id="tspan3819"
+   style="fill:#aa4400">&quot;x&quot;</tspan>: <tspan
+   id="tspan3821"
+   style="fill:#0000ff">‒0.12</tspan>, <tspan
+   id="tspan3823"
+   style="fill:#aa4400">&quot;y&quot;</tspan>: <tspan
+   id="tspan3825"
+   style="fill:#0000ff">0.21</tspan>, <tspan
+   id="tspan3827"
+   style="fill:#aa4400">&quot;z&quot;</tspan>: <tspan
+   id="tspan3829"
+   style="fill:#0000ff">1.02</tspan>, <tspan
+   id="tspan3831"
+   style="fill:#aa4400">&quot;track1&quot;</tspan>: <tspan
+   id="tspan3833"
+   style="fill:#0000ff">2</tspan>, <tspan
+   id="tspan3835"
+   style="fill:#aa4400">&quot;track2&quot;</tspan>: <tspan
+   id="tspan3837"
+   style="fill:#0000ff">5</tspan>},</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Droid Sans Mono;-inkscape-font-specification:Droid Sans Mono"
+         id="tspan3839"
+         y="445.57648"
+         x="74.285713"
+         sodipodi:role="line">               ...],</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Droid Sans Mono;-inkscape-font-specification:Droid Sans Mono"
+         id="tspan3841"
+         y="468.07648"
+         x="74.285713"
+         sodipodi:role="line"><tspan
+   id="tspan3843"
+   style="fill:#aa4400">  &quot;beamspot&quot;</tspan>: {<tspan
+   id="tspan3845"
+   style="fill:#aa4400">&quot;x&quot;</tspan>: <tspan
+   id="tspan3847"
+   style="fill:#0000ff">0.0001</tspan>, <tspan
+   id="tspan3849"
+   style="fill:#aa4400">&quot;y&quot;</tspan>: <tspan
+   id="tspan3851"
+   style="fill:#0000ff">0.0002</tspan>, <tspan
+   id="tspan3853"
+   style="fill:#aa4400">&quot;z&quot;</tspan>: <tspan
+   id="tspan3855"
+   style="fill:#0000ff">0.03</tspan>}</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Droid Sans Mono;-inkscape-font-specification:Droid Sans Mono"
+         id="tspan3857"
+         y="490.57648"
+         x="74.285713"
+         sodipodi:role="line"> },</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Droid Sans Mono;-inkscape-font-specification:Droid Sans Mono"
+         id="tspan3859"
+         y="513.07648"
+         x="74.285713"
+         sodipodi:role="line"> {<tspan
+   id="tspan3861"
+   style="fill:#aa4400">&quot;event&quot;</tspan>: ...}</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;font-family:Droid Sans Mono;-inkscape-font-specification:Droid Sans Mono"
+         id="tspan3863"
+         y="535.57648"
+         x="74.285713"
+         sodipodi:role="line">]</tspan></text>
+  </g>
+</svg>
