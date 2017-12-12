@@ -162,21 +162,28 @@ Though complex, it's possible to represent arbitrary length, nested data in a co
 \end{frame}
 
 \begin{frame}{Example of arbitrary length, nested, columnar data}
-\vspace{0.25 cm}
-\textcolor{darkblue}{Type/schema:} \hspace{0.28 cm}{\tt\small List(List(Record(x:\ char, y:\ int)))}
+\vspace{0.5 cm}
+\textcolor{darkblue}{Type/schema:} \hspace{0.28 cm}collection of\ \ {\tt\small List(List(Record(x:\ char, y:\ int)))}
 
 \vspace{0.25 cm}
 \begin{tabular}{r l}
-\small \hspace{0.15 cm}\textcolor{darkblue}{Logical data:} & {\tt\scriptsize \textcolor{blue}{[}\textcolor{violet}{[}(\textcolor{darkorange}{a},\textcolor{darkgreen}{1}), (\textcolor{darkorange}{b},\textcolor{darkgreen}{2}), (\textcolor{darkorange}{c},\textcolor{darkgreen}{3}), (\textcolor{darkorange}{d},\textcolor{darkgreen}{4})\textcolor{violet}{]}, \textcolor{violet}{[]}, \textcolor{violet}{[}(\textcolor{darkorange}{e},\textcolor{darkgreen}{5}), (\textcolor{darkorange}{f},\textcolor{darkgreen}{6})\textcolor{violet}{]}\textcolor{blue}{]}, \textcolor{blue}{[]}, \textcolor{blue}{[}\textcolor{violet}{[}(\textcolor{darkorange}{g},\textcolor{darkgreen}{7})\textcolor{violet}{]}\textcolor{blue}{]}\ \textcolor{white}{]}} \\
-\small \uncover<2->{x attribute} & \uncover<2->{{\tt\scriptsize \textcolor{darkorange}{[\ \ a,\ \ \ \ \ b,\ \ \ \ \ c,\ \ \ \ \ d,\ \ \ \ \ \ \ \ \ \ \ e,\ \ \ \ \ f,\ \ \ \ \ \ \ \ \ \ \ \ \ g\ \ \ \ \ ]}}} \\
-\small \uncover<2->{y attribute} & \uncover<2->{{\tt\scriptsize \textcolor{darkgreen}{[\ \ \ \ 1,\ \ \ \ \ 2,\ \ \ \ \ 3,\ \ \ \ \ 4,\ \ \ \ \ \ \ \ \ \ \ 5,\ \ \ \ \ 6,\ \ \ \ \ \ \ \ \ \ \ \ \ 7\ \ \ ]}}} \\
-\small \uncover<3->{inner stops} & \uncover<3->{{\tt\scriptsize \textcolor{violet}{[\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 4,\ \ 4,\ \ \ \ \ \ \ \ \ \ \ \ \ \ 6,\ \ \ \ \ \ \ \ \ \ \ \ \ 7\ ]}}} \\
-\small \uncover<3->{outer stops} & \uncover<3->{{\tt\scriptsize \textcolor{blue}{[\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 3,\ \ 3,\ \ \ \ \ \ \ \ \ 4]}}} \\
+\small \hspace{0.15 cm}\textcolor{darkblue}{Logical data:} & {\tt\scriptsize [\textcolor{blue}{[}\textcolor{violet}{[}(\textcolor{darkorange}{a},\textcolor{darkgreen}{1}), (\textcolor{darkorange}{b},\textcolor{darkgreen}{2}), (\textcolor{darkorange}{c},\textcolor{darkgreen}{3}), (\textcolor{darkorange}{d},\textcolor{darkgreen}{4})\textcolor{violet}{]}, \textcolor{violet}{[]}, \textcolor{violet}{[}(\textcolor{darkorange}{e},\textcolor{darkgreen}{5}), (\textcolor{darkorange}{f},\textcolor{darkgreen}{6})\textcolor{violet}{]}\textcolor{blue}{]}, \textcolor{blue}{[]}, \textcolor{blue}{[}\textcolor{violet}{[}(\textcolor{darkorange}{g},\textcolor{darkgreen}{7})\textcolor{violet}{]}\textcolor{blue}{]}]} \\
+\small \uncover<2->{x attribute} & \uncover<2->{{\tt\scriptsize \textcolor{darkorange}{[\ \ \ a,\ \ \ \ \ b,\ \ \ \ \ c,\ \ \ \ \ d,\ \ \ \ \ \ \ \ \ \ \ e,\ \ \ \ \ f,\ \ \ \ \ \ \ \ \ \ \ \ \ g\ \ \ \ \ ]}}} \\
+\small \uncover<2->{y attribute} & \uncover<2->{{\tt\scriptsize \textcolor{darkgreen}{[\ \ \ \ \ 1,\ \ \ \ \ 2,\ \ \ \ \ 3,\ \ \ \ \ 4,\ \ \ \ \ \ \ \ \ \ \ 5,\ \ \ \ \ 6,\ \ \ \ \ \ \ \ \ \ \ \ \ 7\ \ \ ]}}} \\
+\small \only<3>{inner stops}\only<4->{inner offsets} & \only<3>{{\tt\scriptsize \textcolor{violet}{[\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 4,\ \ 4,\ \ \ \ \ \ \ \ \ \ \ \ \ \ 6,\ \ \ \ \ \ \ \ \ \ \ \ \ 7\ ]}}}\only<4->{{\tt\scriptsize \textcolor{violet}{[\ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 4,\ \ 4,\ \ \ \ \ \ \ \ \ \ \ \ \ \ 6,\ \ \ \ \ \ \ \ \ \ \ \ \ 7\ ]}}} \\
+\small \only<3>{outer stops}\only<4->{outer offsets} & \only<3>{{\tt\scriptsize \textcolor{blue}{[\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 3,\ \ 3,\ \ \ \ \ \ \ \ \ 4]}}}\only<4->{{\tt\scriptsize \textcolor{blue}{[0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 3,\ \ 3,\ \ \ \ \ \ \ \ \ 4]}}} \\
 \end{tabular}
 
 \vspace{0.25 cm}
 \begin{itemize}
 \item<3-> Stops array is a cumulative number of items at some level of depth (see how they line up with the closing brackets?).
+\item<4-> More convenient to have both starts and stops (``offsets'') by prepending zero.
+\item<5-> Random access: {\tt\small data\textcolor{black}{[0]}\textcolor{blue}{[2]}\textcolor{violet}{[1]}\textcolor{darkorange}{.x}} \uncover<6->{{\tt\small = \textcolor{darkorange}{x[}\textcolor{violet}{inner[}\textcolor{blue}{outer[}0\textcolor{blue}{]} + 2\textcolor{violet}{]} + 1\textcolor{darkorange}{]} = f}.}
+\item<7-> This is Arrow format, which is less packed than ROOT, Dremel, or Parquet.
+\begin{itemize}
+\item<8-> Unified disk and memory formats: ideal for memory mapping or storage-class media.
+\item<9-> Can be extremely lightweight: access memory-mapped array element, operating system fetches from disk and caches on demand.
+\end{itemize}
 \end{itemize}
 \end{frame}
 
