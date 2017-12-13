@@ -370,7 +370,7 @@ Although high-energy physics data are non-relational--- append-only document sto
 
 \begin{itemize}\setlength{\itemsep}{0.2 cm}
 \item<2-> \textcolor{darkblue}{Resilient, distributed storage:} we're exploring the option of putting the arrays in an object store like Ceph (one array per key-value pair).
-\item<3-> \textcolor{darkblue}{Distributed processing:} implementing Hadoop-style locality in the object store (hack the CRUSH algorithm?).
+\item<3-> \textcolor{darkblue}{Distributed processing:} implementing Hadoop-style locality in the object store (hack Ceph's CRUSH algorithm?).
 \item<4-> \textcolor{darkblue}{Zero-copy filtering:} expanding the data representation (next page) would allow subsets to be expressed without copying list contents, like a database stencil.
 \item<5-> \textcolor{darkblue}{Database-style indexing:} same extension would allow us to sort substructures by a primary key without altering logical order.
 \end{itemize}
@@ -397,7 +397,7 @@ Although high-energy physics data are non-relational--- append-only document sto
 \vspace{0.25 cm}
 \begin{uncoverenv}<4->
 \begin{itemize}
-\item inner starts/stops (v2) keeps only the first pair of each sublist: particle selection
+\item inner starts/stops (v2) keeps only the first record of each sublist: particle selection
 \item outer starts/stops (v2) keeps only the first two sublists: event selection.
 \end{itemize}
 \end{uncoverenv}
