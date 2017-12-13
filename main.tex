@@ -127,6 +127,7 @@ rather than a rectangular table with a fixed number of columns.
 
 \begin{frame}{We need arbitrary length data structures in a columnar format}
 \vspace{0.35 cm}
+
 \begin{columns}[t]
 \column{0.3\linewidth}
 \vspace{1 cm}
@@ -138,7 +139,7 @@ rather than a rectangular table with a fixed number of columns.
 \vspace{0.25 cm}
 \begin{itemize}
 \item Arbitrary length, nested data was a requirement from the very beginning.
-\item ZEBRA allocated these structures in FORTRAN and saved them in files.
+\item ZEBRA allocated these structures in FORTRAN and saved them to files.
 \item High energy physics analyses are still batch processes on binary files.
 \end{itemize}
 
@@ -165,11 +166,11 @@ Though complex, it's possible to represent arbitrary length, nested data in a co
 
 \begin{frame}{Example of arbitrary length, nested, columnar data}
 \vspace{0.5 cm}
-\textcolor{darkblue}{Type/schema:} \hspace{0.28 cm}collection of\ \ {\tt\small List(List(Record(x:\ char, y:\ int)))}
+\textcolor{darkblue}{Type/schema:} \hspace{0.28 cm}collection of\ \ {\tt\small \textcolor{blue}{List(}\textcolor{violet}{List(}Record(\textcolor{darkorange}{x:\ char}, \textcolor{darkgreen}{y:\ int})\textcolor{violet}{)}\textcolor{blue}{)}}
 
 \vspace{0.25 cm}
 \begin{tabular}{r l}
-\small \hspace{0.15 cm}\textcolor{darkblue}{Logical data:} & [\,{\tt\scriptsize \textcolor{blue}{[}\textcolor{violet}{[}(\textcolor{darkorange}{a},\textcolor{darkgreen}{1}), (\textcolor{darkorange}{b},\textcolor{darkgreen}{2}), (\textcolor{darkorange}{c},\textcolor{darkgreen}{3}), (\textcolor{darkorange}{d},\textcolor{darkgreen}{4})\textcolor{violet}{]}, \textcolor{violet}{[]}, \textcolor{violet}{[}(\textcolor{darkorange}{e},\textcolor{darkgreen}{5}), (\textcolor{darkorange}{f},\textcolor{darkgreen}{6})\textcolor{violet}{]}\textcolor{blue}{]}{\rm\normalsize ,\,} \textcolor{blue}{[]}{\rm\normalsize ,\,} \textcolor{blue}{[}\textcolor{violet}{[}(\textcolor{darkorange}{g},\textcolor{darkgreen}{7})\textcolor{violet}{]}\textcolor{blue}{]}}\,] \\
+\small \hspace{0.15 cm}\textcolor{darkblue}{Logical data:} & \hspace{-0.05 cm}[\,{\tt\scriptsize \textcolor{blue}{[}\textcolor{violet}{[}(\textcolor{darkorange}{a},\textcolor{darkgreen}{1}), (\textcolor{darkorange}{b},\textcolor{darkgreen}{2}), (\textcolor{darkorange}{c},\textcolor{darkgreen}{3}), (\textcolor{darkorange}{d},\textcolor{darkgreen}{4})\textcolor{violet}{]}, \textcolor{violet}{[]}, \textcolor{violet}{[}(\textcolor{darkorange}{e},\textcolor{darkgreen}{5}), (\textcolor{darkorange}{f},\textcolor{darkgreen}{6})\textcolor{violet}{]}\textcolor{blue}{]}, \textcolor{blue}{[]}, \textcolor{blue}{[}\textcolor{violet}{[}(\textcolor{darkorange}{g},\textcolor{darkgreen}{7})\textcolor{violet}{]}\textcolor{blue}{]}}\,] \\
 \small \uncover<2->{x attribute} & \uncover<2->{{\tt\scriptsize \textcolor{darkorange}{[\ \ \ a,\ \ \ \ \ b,\ \ \ \ \ c,\ \ \ \ \ d,\ \ \ \ \ \ \ \ \ \ \ e,\ \ \ \ \ f,\ \ \ \ \ \ \ \ \ \ \ \ \ g\ \ \ \ \ ]}}} \\
 \small \uncover<2->{y attribute} & \uncover<2->{{\tt\scriptsize \textcolor{darkgreen}{[\ \ \ \ \ 1,\ \ \ \ \ 2,\ \ \ \ \ 3,\ \ \ \ \ 4,\ \ \ \ \ \ \ \ \ \ \ 5,\ \ \ \ \ 6,\ \ \ \ \ \ \ \ \ \ \ \ \ 7\ \ \ ]}}} \\
 \small \only<3>{inner stops}\only<4->{inner offsets} & \only<3>{{\tt\scriptsize \textcolor{violet}{[\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 4,\ \ 4,\ \ \ \ \ \ \ \ \ \ \ \ \ \ 6,\ \ \ \ \ \ \ \ \ \ \ \ \ 7\ ]}}}\only<4->{{\tt\scriptsize \textcolor{violet}{[\ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 4,\ \ 4,\ \ \ \ \ \ \ \ \ \ \ \ \ \ 6,\ \ \ \ \ \ \ \ \ \ \ \ \ 7\ ]}}} \\
@@ -212,7 +213,7 @@ thwarts the performance advantage of zero-copy data.
 \vspace{0.4 cm}
 
 \begin{tabular}{r l}
-\small \hspace{0.15 cm}\textcolor{darkblue}{Logical data:} & [\,{\tt\scriptsize \textcolor{blue}{[}\textcolor{violet}{[}(\textcolor{darkorange}{a},\textcolor{darkgreen}{1}), (\textcolor{darkorange}{b},\textcolor{darkgreen}{2}), (\textcolor{darkorange}{c},\textcolor{darkgreen}{3}), (\textcolor{darkorange}{d},\textcolor{darkgreen}{4})\textcolor{violet}{]}, \textcolor{violet}{[]}, \textcolor{violet}{[}(\textcolor{darkorange}{e},\textcolor{darkgreen}{5}), (\textcolor{darkorange}{f},\textcolor{darkgreen}{6})\textcolor{violet}{]}\textcolor{blue}{]}{\rm\normalsize ,\,} \textcolor{blue}{[]}{\rm\normalsize ,\,} \textcolor{blue}{[}\textcolor{violet}{[}(\textcolor{darkorange}{g},\textcolor{darkgreen}{7})\textcolor{violet}{]}\textcolor{blue}{]}}\,] \\
+\small \hspace{0.15 cm}\textcolor{darkblue}{Logical data:} & \hspace{-0.05 cm}[\,{\tt\scriptsize \textcolor{blue}{[}\textcolor{violet}{[}(\textcolor{darkorange}{a},\textcolor{darkgreen}{1}), (\textcolor{darkorange}{b},\textcolor{darkgreen}{2}), (\textcolor{darkorange}{c},\textcolor{darkgreen}{3}), (\textcolor{darkorange}{d},\textcolor{darkgreen}{4})\textcolor{violet}{]}, \textcolor{violet}{[]}, \textcolor{violet}{[}(\textcolor{darkorange}{e},\textcolor{darkgreen}{5}), (\textcolor{darkorange}{f},\textcolor{darkgreen}{6})\textcolor{violet}{]}\textcolor{blue}{]}, \textcolor{blue}{[]}, \textcolor{blue}{[}\textcolor{violet}{[}(\textcolor{darkorange}{g},\textcolor{darkgreen}{7})\textcolor{violet}{]}\textcolor{blue}{]}}\,] \\
 \small x attribute & {\tt\scriptsize \textcolor{darkorange}{[\ \ \ a,\ \ \ \ \ b,\ \ \ \ \ c,\ \ \ \ \ d,\ \ \ \ \ \ \ \ \ \ \ e,\ \ \ \ \ f,\ \ \ \ \ \ \ \ \ \ \ \ \ g\ \ \ \ \ ]}} \\
 \small y attribute & {\tt\scriptsize \textcolor{darkgreen}{[\ \ \ \ \ 1,\ \ \ \ \ 2,\ \ \ \ \ 3,\ \ \ \ \ 4,\ \ \ \ \ \ \ \ \ \ \ 5,\ \ \ \ \ 6,\ \ \ \ \ \ \ \ \ \ \ \ \ 7\ \ \ ]}} \\
 \small inner offsets & {\tt\scriptsize \textcolor{violet}{[\ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 4,\ \ 4,\ \ \ \ \ \ \ \ \ \ \ \ \ \ 6,\ \ \ \ \ \ \ \ \ \ \ \ \ 7\ ]}} \\
@@ -379,7 +380,7 @@ Although high-energy physics data are non-relational--- append-only document sto
 \vspace{0.5 cm}
 
 \begin{tabular}{r l}
-\small \hspace{0.15 cm}\textcolor{darkblue}{Logical data:} & [\,{\tt\scriptsize \textcolor{blue}{[}\textcolor{violet}{[}(\textcolor{darkorange}{a},\textcolor{darkgreen}{1}), (\textcolor{darkorange}{b},\textcolor{darkgreen}{2}), (\textcolor{darkorange}{c},\textcolor{darkgreen}{3}), (\textcolor{darkorange}{d},\textcolor{darkgreen}{4})\textcolor{violet}{]}, \textcolor{violet}{[]}, \textcolor{violet}{[}(\textcolor{darkorange}{e},\textcolor{darkgreen}{5}), (\textcolor{darkorange}{f},\textcolor{darkgreen}{6})\textcolor{violet}{]}\textcolor{blue}{]}{\rm\normalsize ,\,} \textcolor{blue}{[]}{\rm\normalsize ,\,} \textcolor{blue}{[}\textcolor{violet}{[}(\textcolor{darkorange}{g},\textcolor{darkgreen}{7})\textcolor{violet}{]}\textcolor{blue}{]}}\,] \\\hline
+\small \hspace{0.15 cm}\textcolor{darkblue}{Logical data:} & \hspace{-0.05 cm}[\,{\tt\scriptsize \textcolor{blue}{[}\textcolor{violet}{[}(\textcolor{darkorange}{a},\textcolor{darkgreen}{1}), (\textcolor{darkorange}{b},\textcolor{darkgreen}{2}), (\textcolor{darkorange}{c},\textcolor{darkgreen}{3}), (\textcolor{darkorange}{d},\textcolor{darkgreen}{4})\textcolor{violet}{]}, \textcolor{violet}{[]}, \textcolor{violet}{[}(\textcolor{darkorange}{e},\textcolor{darkgreen}{5}), (\textcolor{darkorange}{f},\textcolor{darkgreen}{6})\textcolor{violet}{]}\textcolor{blue}{]}, \textcolor{blue}{[]}, \textcolor{blue}{[}\textcolor{violet}{[}(\textcolor{darkorange}{g},\textcolor{darkgreen}{7})\textcolor{violet}{]}\textcolor{blue}{]}}\,] \\\hline
 \small x attribute & {\tt\scriptsize \textcolor{darkorange}{[\ \ \ a,\ \ \ \ \ b,\ \ \ \ \ c,\ \ \ \ \ d,\ \ \ \ \ \ \ \ \ \ \ e,\ \ \ \ \ f,\ \ \ \ \ \ \ \ \ \ \ \ \ g\ \ \ \ \ ]}} \\
 \small y attribute & {\tt\scriptsize \textcolor{darkgreen}{[\ \ \ \ \ 1,\ \ \ \ \ 2,\ \ \ \ \ 3,\ \ \ \ \ 4,\ \ \ \ \ \ \ \ \ \ \ 5,\ \ \ \ \ 6,\ \ \ \ \ \ \ \ \ \ \ \ \ 7\ \ \ ]}} \\
 \small \only<1>{inner offsets}\only<2->{inner starts} & \only<1>{{\tt\scriptsize \textcolor{violet}{[\ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 4,\ \ 4,\ \ \ \ \ \ \ \ \ \ \ \ \ \ 6,\ \ \ \ \ \ \ \ \ \ \ \ \ 7\ ]}}}\only<2->{{\tt\scriptsize \textcolor{violet}{[\ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 4,\ \ 4,\ \ \ \ \ \ \ \ \ \ \ \ \ \ 6,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]}}} \\
@@ -390,7 +391,7 @@ Although high-energy physics data are non-relational--- append-only document sto
 \small \uncover<3->{inner stops (v2)} & \uncover<3->{{\tt\scriptsize \textcolor{violet}{[\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 5\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]}}} \\
 \small \uncover<3->{outer starts (v2)} & \uncover<3->{{\tt\scriptsize \textcolor{blue}{[0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 2\ \ \ \ \ \ \ \ \ \ \ \ ]}}} \\
 \small \uncover<3->{outer stops (v2)} & \uncover<3->{{\tt\scriptsize \textcolor{blue}{[\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 2,\ \ 2\ \ \ \ \ \ \ \ \ \ \ ]}}} \\\hline
-\small \uncover<3->{\textcolor{darkblue}{Logical data (v2):}} & \uncover<3->{[\,{\tt\scriptsize \textcolor{blue}{[}\textcolor{violet}{[}(\textcolor{darkorange}{a},\textcolor{darkgreen}{1})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{violet}{]}, \ \ \ \ \textcolor{violet}{[}(\textcolor{darkorange}{e},\textcolor{darkgreen}{5})\ \ \ \ \ \ \ \textcolor{violet}{]}\textcolor{blue}{]}, \textcolor{blue}{[]}\ \ \ \ \ \ \ \ \ \ \ }\,]} \\
+\small \uncover<3->{\textcolor{darkblue}{Logical data (v2):}} & \uncover<3->{\hspace{-0.05 cm}[\,{\tt\scriptsize \textcolor{blue}{[}\textcolor{violet}{[}(\textcolor{darkorange}{a},\textcolor{darkgreen}{1})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{violet}{]}, \ \ \ \ \textcolor{violet}{[}(\textcolor{darkorange}{e},\textcolor{darkgreen}{5})\ \ \ \ \ \ \ \textcolor{violet}{]}\textcolor{blue}{]}, \textcolor{blue}{[]}\ \ \ \ \ \ \ \ \ \ \ }\,]} \\
 \end{tabular}
 
 \vspace{0.25 cm}
@@ -406,7 +407,7 @@ Although high-energy physics data are non-relational--- append-only document sto
 \vspace{0.5 cm}
 
 \begin{tabular}{r l}
-\small \hspace{0.15 cm}\textcolor{darkblue}{Logical data:} & [\,{\tt\scriptsize \textcolor{blue}{[}\textcolor{violet}{[}(\textcolor{darkorange}{a},\textcolor{darkgreen}{1}), (\textcolor{darkorange}{b},\textcolor{darkgreen}{2}), (\textcolor{darkorange}{c},\textcolor{darkgreen}{3}), (\textcolor{darkorange}{d},\textcolor{darkgreen}{4})\textcolor{violet}{]}, \textcolor{violet}{[]}, \textcolor{violet}{[}(\textcolor{darkorange}{e},\textcolor{darkgreen}{5}), (\textcolor{darkorange}{f},\textcolor{darkgreen}{6})\textcolor{violet}{]}\textcolor{blue}{]}{\rm\normalsize ,\,} \textcolor{blue}{[]}{\rm\normalsize ,\,} \textcolor{blue}{[}\textcolor{violet}{[}(\textcolor{darkorange}{g},\textcolor{darkgreen}{7})\textcolor{violet}{]}\textcolor{blue}{]}}\,] \\\hline
+\small \hspace{0.15 cm}\textcolor{darkblue}{Logical data:} & \hspace{-0.05 cm}[\,{\tt\scriptsize \textcolor{blue}{[}\textcolor{violet}{[}(\textcolor{darkorange}{a},\textcolor{darkgreen}{1}), (\textcolor{darkorange}{b},\textcolor{darkgreen}{2}), (\textcolor{darkorange}{c},\textcolor{darkgreen}{3}), (\textcolor{darkorange}{d},\textcolor{darkgreen}{4})\textcolor{violet}{]}, \textcolor{violet}{[]}, \textcolor{violet}{[}(\textcolor{darkorange}{e},\textcolor{darkgreen}{5}), (\textcolor{darkorange}{f},\textcolor{darkgreen}{6})\textcolor{violet}{]}\textcolor{blue}{]}, \textcolor{blue}{[]}, \textcolor{blue}{[}\textcolor{violet}{[}(\textcolor{darkorange}{g},\textcolor{darkgreen}{7})\textcolor{violet}{]}\textcolor{blue}{]}}\,] \\\hline
 \small x attribute & {\tt\scriptsize \textcolor{darkorange}{[\ \ \ a,\ \ \ \ \ b,\ \ \ \ \ c,\ \ \ \ \ d,\ \ \ \ \ \ \ \ \ \ \ e,\ \ \ \ \ f,\ \ \ \ \ \ \ \ \ \ \ \ \ g\ \ \ \ \ ]}} \\
 \small y attribute & {\tt\scriptsize \textcolor{darkgreen}{[\ \ \ \ \ 1,\ \ \ \ \ 2,\ \ \ \ \ 3,\ \ \ \ \ 4,\ \ \ \ \ \ \ \ \ \ \ 5,\ \ \ \ \ 6,\ \ \ \ \ \ \ \ \ \ \ \ \ 7\ \ \ ]}} \\
 \small inner starts & {\tt\scriptsize \textcolor{violet}{[\ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 4,\ \ 4,\ \ \ \ \ \ \ \ \ \ \ \ \ \ 6,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]}} \\
