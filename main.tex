@@ -228,14 +228,14 @@ thwarts the performance advantage of zero-copy data.
 \small
 \begin{minted}{python}
 for outer in data:
-  for inner in outer:
-    best = None  # None or rec type
-    for rec in inner:
-      if best is None or \
-         rec.y > best.y:
-        best = rec
-    if best is not None:
-      print(best.x)
+    for inner in outer:
+        best = None  # None or rec type
+        for rec in inner:
+            if best is None or \
+                         rec.y > best.y:
+                best = rec
+        if best is not None:
+            print(best.x)
 \end{minted}
 
 \column{0.5\linewidth}
@@ -244,14 +244,14 @@ for outer in data:
 \small
 \begin{minted}{python}
 for i in range(outer[-1]):
-  best = None  # None or int type
-  for j in range(inner[i],
-                 inner[i + 1]):
-    if best is None or \
-       y[j] > y[best]:
-      best = j
-  if best is not None:
-    print(x[best])
+    best = None  # None or int type
+    for j in range(inner[i],
+                   inner[i + 1]):
+        if best is None or \
+                     y[j] > y[best]:
+            best = j
+    if best is not None:
+        print(x[best])
 \end{minted}
 
 \end{columns}
@@ -344,16 +344,16 @@ for i in range(outer[-1]):
 \scriptsize
 \begin{minted}{python}
 def mass_of_pairs(event):
-  n = len(event.muons)
-  for i in range(n):  # distinct pairs
-    for j in range(i+1, n):
-      m1 = event.muons[i]
-      m2 = event.muons[j]
-      mass = sqrt(
-        2*m1.pt*m2.pt*(
-        cosh(m1.eta - m2.eta) -
-        cos(m1.phi - m2.phi)))
-      fill_histogram(mass)
+    n = len(event.muons)
+    for i in range(n):  # distinct pairs
+        for j in range(i+1, n):
+            m1 = event.muons[i]
+            m2 = event.muons[j]
+            mass = sqrt(
+                2*m1.pt*m2.pt*(
+                cosh(m1.eta - m2.eta) -
+                cos(m1.phi - m2.phi)))
+            fill_histogram(mass)
 \end{minted}
 
 \column{0.55\linewidth}
