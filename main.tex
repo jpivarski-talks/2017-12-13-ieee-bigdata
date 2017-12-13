@@ -229,11 +229,11 @@ thwarts the performance advantage of zero-copy data.
 \begin{minted}{python}
 for outer in data:
     for inner in outer:
-        best = None  # None or rec type
-        for rec in inner:
+        best = None  # object type
+        for record in inner:
             if best is None or \
-                         rec.y > best.y:
-                best = rec
+                     record.y > best.y:
+                best = record
         if best is not None:
             print(best.x)
 \end{minted}
@@ -243,15 +243,15 @@ for outer in data:
 
 \small
 \begin{minted}{python}
-for i in range(outer[-1]):
-    best = None  # None or int type
-    for j in range(inner[i],
-                   inner[i + 1]):
-        if best is None or \
-                     y[j] > y[best]:
+for i in range(outeroffset[-1]):
+    best = -1  # integer type
+    for j in range(inneroffset[i],
+                   inneroffset[i + 1]):
+        if best == -1 or \
+                 yattr[j] > yattr[best]:
             best = j
-    if best is not None:
-        print(x[best])
+    if best != -1:
+        print(xattr[best])
 \end{minted}
 
 \end{columns}
@@ -267,7 +267,7 @@ for i in range(outer[-1]):
 \item Objects, such as lists and records, become integer-valued indexes.
 \item List dereferencing (e.g.\ {\tt\normalsize data[5]}) becomes offset array dereferencing.
 \item Offset array indexes for sublists range from {\tt\normalsize outer[i]} to {\tt\normalsize outer[i~+~1]}, and list length is {\tt\normalsize (outer[i + 1] - outer[i])}.
-\item Record dereferencing (e.g.\ {\tt\normalsize datum.x}) simply passes the index along to the nested object: {\tt\normalsize datum.x + datum.y} becomes {\tt\normalsize x[i] + y[i]}.
+\item Record dereferencing (e.g.\ {\tt\normalsize datum.x}) simply passes the index along to the nested object: {\tt\normalsize datum.x + datum.y} becomes {\tt\normalsize xattr[i] + yattr[i]}.
 \item After transformation, there are no objects, only arrays and indexes.
 \end{itemize}
 
