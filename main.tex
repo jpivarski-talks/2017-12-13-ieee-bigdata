@@ -255,80 +255,123 @@
 %% \end{columns}
 %% \end{frame}
 
-\begin{frame}{General features of code transformation}
-\vspace{0.5 cm}
+%% \begin{frame}{General features of code transformation}
+%% \vspace{0.5 cm}
+%% \large
+%% \textcolor{darkblue}{The code transformation obeys rules that can be applied recursively:}
+
+%% \vspace{0.1 cm}
+%% \begin{itemize}\setlength{\itemsep}{0.25 cm}
+%% \item Objects, such as lists and records, become integer-valued indexes.
+%% \item List dereferencing (e.g.\ {\tt\normalsize data[5]}) becomes offset array dereferencing.
+%% \item Offset array indexes for sublists range from {\tt\normalsize outer[i]} to {\tt\normalsize outer[i~+~1]}, and list length is {\tt\normalsize (outer[i + 1] - outer[i])}.
+%% \item Record dereferencing (e.g.\ {\tt\normalsize datum.x}) simply passes the index along to the nested object: {\tt\normalsize datum.x + datum.y} becomes {\tt\normalsize x[i] + y[i]}.
+%% \item After transformation, there are no objects, only arrays and indexes.
+%% \end{itemize}
+
+%% \normalsize
+%% \vspace{0.25 cm}
+%% \uncover<2->{For our application, we have been transforming a Python abstract syntax tree (AST) and passing the result to Numba (a Python compiler for array-centric code).}
+
+%% \vspace{0.15 cm}
+%% \uncover<2->{Soon, we will attempt to encode these rules in Numba directly as a Numba extension.}
+%% \end{frame}
+
+%% \begin{frame}{Prior art}
+%% \vspace{0.35 cm}
+%% \begin{columns}[t]
+%% \column{0.33\linewidth}
+%% \mbox{ }\hfill\underline{\large Apache Drill}\hfill\mbox{ }
+
+%% \vspace{0.25 cm}
+%% \begin{itemize}
+%% \item Motivating example: provides fast querying over SQL tables by transforming user queries, rather than materializing row objects.\vspace{3\baselineskip}\vspace{0.15 cm}
+%% \item \textcolor{darkblue}{However,} not for arbitrary length data.
+%% \end{itemize}
+
+%% \column{0.33\linewidth}
+%% \mbox{ }\hfill\underline{\large Google Flatbuffers}\hfill\mbox{ }
+
+%% \vspace{0.25 cm}
+%% \begin{itemize}
+%% \item Like Google ProtoBufs, except that data are accessed in place, without deserialization.\vspace{6\baselineskip}\vspace{0.15 cm}
+%% \item \textcolor{darkblue}{However,} data are not columnar.
+%% \end{itemize}
+
+%% \column{0.34\linewidth}
+%% \mbox{ }\hfill\underline{\large\it Columnar Objects}\hfill\mbox{ }
+
+%% \vspace{0.25 cm}
+%% \scriptsize
+%% \begin{itemize}
+%% \item T.\ Mattis, J.\ Henning, P.\ Rein, R.\ Hirschfeld, M.\ Appeltauer, ``Columnar Objects: Improving the Performance of Analytical Applications,'' in {\it 2015 ACM International Symposium on New Ideas, New Paradigms, and Reflections on Programming and Software (Onward!),} 2015, pp.\ 197--210.
+%% \item \normalsize Proxy objects in PyPy; similar in that PyPy is JIT-compiled.
+%% \item \normalsize This is the approach we're applying to high-energy physics.
+%% \end{itemize}
+%% \end{columns}
+%% \end{frame}
+
+%% \begin{frame}[fragile]{Code transformation outperforms C++ with deserialization}
+%% \vspace{0.25 cm}
+%% \underline{Tested four realistic analysis functions on data from \only<1>{ROOT files with warmed cache}\only<2>{ROOT files or Arrow-like arrays}.}
+
+%% \begin{columns}
+%% \column{0.45\linewidth}
+%% \vspace{-0.2 cm}
+%% \begin{columns}
+%% \column{1.1\linewidth}
+%% \scriptsize
+%% \begin{onlyenv}<1>
+%% \begin{itemize}
+%% \item \textcolor{blue}{ROOT full dataset} reconstructs objects with all attributes, including unused ones.
+%% \item \textcolor{red}{ROOT selective on full} uses dummy placeholders for unused attributes.
+%% \item \textcolor{darkorange}{ROOT slim dataset} uses exactly what is needed.
+%% \item \textcolor{darkdarkgreen}{Code transformation on full ROOT dataset} is transformed, compiled Python code with no deserialization.
+%% \end{itemize}
+%% \end{onlyenv}
+%% \begin{onlyenv}<2>
+%% \begin{itemize}
+%% \item \textcolor{darkdarkgreen}{Code transformation on full ROOT dataset} same as previous page, for scale.
+%% \item \textcolor{mauve}{Same on cached arrays} releases the constraint that data originate in ROOT files, reading them from Arrow-like arrays instead.
+%% \end{itemize}
+%% \vspace{0.9 cm}
+%% \end{onlyenv}
+%% \end{columns}
+
+%% \vspace{0.15 cm}
+%% \scriptsize
+%% \begin{minted}{python}
+%% def mass_of_pairs(event):
+%%   n = len(event.muons)
+%%   for i in range(n):  # distinct pairs
+%%     for j in range(i+1, n):
+%%       m1 = event.muons[i]
+%%       m2 = event.muons[j]
+%%       mass = sqrt(
+%%         2*m1.pt*m2.pt*(
+%%         cosh(m1.eta - m2.eta) -
+%%         cos(m1.phi - m2.phi)))
+%%       fill_histogram(mass)
+%% \end{minted}
+
+%% \column{0.55\linewidth}
+%% \vspace{0.1 cm}
+%% \only<1>{\includegraphics[width=\linewidth]{root-and-plur.pdf}}
+%% \only<2>{\includegraphics[width=\linewidth]{physical-media.pdf}}
+%% \end{columns}
+%% \end{frame}
+
+\begin{frame}{Future work}
+\vspace{0.35 cm}
 \large
-\textcolor{darkblue}{The code transformation obeys rules that can be applied recursively:}
+Although high-energy physics data are non-relational--- append-only document stores in columnar representation--- exploratory data analysis would be aided by more database-like features.
 
-\vspace{0.1 cm}
-\begin{itemize}\setlength{\itemsep}{0.25 cm}
-\item Objects, such as lists and records, become integer-valued indexes.
-\item List dereferencing (e.g.\ {\tt\normalsize data[5]}) becomes offset array dereferencing.
-\item Offset array indexes for sublists range from {\tt\normalsize outer[i]} to {\tt\normalsize outer[i~+~1]}, and list length is {\tt\normalsize (outer[i + 1] - outer[i])}.
-\item Record dereferencing (e.g.\ {\tt\normalsize datum.x}) simply passes the index along to the nested object: {\tt\normalsize datum.x + datum.y} becomes {\tt\normalsize x[i] + y[i]}.
-\item After transformation, there are no objects, only arrays and indexes.
+\begin{itemize}\setlength{\itemsep}{0.2 cm}
+\item<2-> \textcolor{darkblue}{Resilient, distributed storage:} we're exploring the option of putting the arrays in an object store like Ceph (one array per key-value pair).
+\item<3-> \textcolor{darkblue}{Distributed processing:} implementing Hadoop-style locality in the object store (hack the CRUSH algorithm?).
+\item<4-> \textcolor{darkblue}{Zero-copy filtering:} expanding the data representation (next page) would allow subsets to be expressed without copying list contents, like a database stencil.
+\item<5-> \textcolor{darkblue}{Database-style indexing:} same extension would allow us to sort substructures by a primary key without altering logical order.
 \end{itemize}
-
-\normalsize
-\vspace{0.25 cm}
-\uncover<2->{For our application, we have been transforming a Python abstract syntax tree (AST) and passing the result to Numba (a Python compiler for array-centric code).}
-
-\vspace{0.15 cm}
-\uncover<2->{Soon, we will attempt to encode these rules in Numba directly as a Numba extension.}
-\end{frame}
-
-\begin{frame}[fragile]{Code transformation outperforms C++ with deserialization}
-\vspace{0.25 cm}
-\underline{Tested four realistic analysis functions on data from \only<1>{ROOT files with warmed cache}\only<2>{ROOT files or Arrow-like arrays}.}
-
-\begin{columns}
-\column{0.45\linewidth}
-\vspace{-0.2 cm}
-\begin{columns}
-\column{1.1\linewidth}
-\scriptsize
-\begin{onlyenv}<1>
-\begin{itemize}
-\item \textcolor{blue}{ROOT full dataset} reconstructs objects with all attributes, including unused ones.
-\item \textcolor{red}{ROOT selective on full} uses dummy placeholders for unused attributes.
-\item \textcolor{darkorange}{ROOT slim dataset} uses exactly what is needed.
-\item \textcolor{darkdarkgreen}{Code transformation on full ROOT dataset} is transformed, compiled Python code with no deserialization.
-\end{itemize}
-\end{onlyenv}
-\begin{onlyenv}<2>
-\begin{itemize}
-\item \textcolor{darkdarkgreen}{Code transformation on full ROOT dataset} same as previous page, for scale.
-\item \textcolor{mauve}{Same on cached arrays} releases the constraint that data originate in ROOT files, reading them from Arrow-like arrays instead.
-\end{itemize}
-\vspace{0.9 cm}
-\end{onlyenv}
-\end{columns}
-
-\vspace{0.15 cm}
-\scriptsize
-\begin{minted}{python}
-def mass_of_pairs(event):
-  n = len(event.muons)
-  for i in range(n):  # distinct pairs
-    for j in range(i+1, n):
-      m1 = event.muons[i]
-      m2 = event.muons[j]
-      mass = sqrt(
-        2*m1.pt*m2.pt*(
-        cosh(m1.eta - m2.eta) -
-        cos(m1.phi - m2.phi)))
-      fill_histogram(mass)
-\end{minted}
-
-\column{0.55\linewidth}
-\vspace{0.1 cm}
-\only<1>{\includegraphics[width=\linewidth]{root-and-plur.pdf}}
-\only<2>{\includegraphics[width=\linewidth]{physical-media.pdf}}
-\end{columns}
-\end{frame}
-
-\begin{frame}{}
-
 \end{frame}
 
 
